@@ -1,0 +1,59 @@
+---
+- !ruby/object:NdrImport::Table
+  canonical_name: sheet_one
+  filename_pattern: !ruby/regexp /cross_worksheet_spreadsheet.xlsx\z/i
+  tablename_pattern: !ruby/regexp /\ASheet1\z/i
+  header_lines: 1
+  footer_lines: 0
+  columns:
+  - column: Sheet1_Common1
+    rawtext_name: common1
+    klass:
+    - Hash#1
+    - Hash#2
+    mappings:
+    - field: COMMON1
+      avro_data_type: :string
+  - column: Sheet1_Common2
+    rawtext_name: common2
+    klass:
+    - Hash#1
+    - Hash#2
+    mappings:
+    - field: COMMON2
+      avro_data_type: :string
+  - column: Sheet1_First
+    klass:
+    - Hash#1
+    mappings:
+    - field: FIRST
+      avro_data_type: :string
+  - column: Sheet1_Second
+    klass:
+    - Hash#2
+    mappings:
+    - field: SECOND
+      avro_data_type: :string
+
+- !ruby/object:NdrImport::Table
+  canonical_name: sheet_two
+  filename_pattern: !ruby/regexp /cross_worksheet_spreadsheet.xlsx\z/i
+  tablename_pattern: !ruby/regexp /\ASheet2\z/i
+  header_lines: 1
+  footer_lines: 0
+  klass: Hash
+  columns:
+  - column: Sheet2_Common1
+    rawtext_name: common1
+    mappings:
+    - field: COMMON1
+      avro_data_type: :string
+  - column: Sheet2_Common2
+    rawtext_name: common2
+    mappings:
+    - field: COMMON2
+      avro_data_type: :string
+  - column: Sheet2_Third
+    mappings:
+    - field: THIRD
+      avro_data_type: :string

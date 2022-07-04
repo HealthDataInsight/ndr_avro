@@ -1,0 +1,11 @@
+/.bundle/
+/.rubocop-https---raw-githubusercontent-com-PublicHealthEngland-ndr-dev-support-master--rubocop-yml
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/Gemfile.lock
+/pkg/
+/spec/reports/
+/tmp/
+/vendor/

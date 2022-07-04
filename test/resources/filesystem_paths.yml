@@ -1,0 +1,17 @@
+<% require 'tmpdir' %>
+# This allows us different filesystem paths for different platforms
+--- 
+? !ruby/regexp /.*/
+: 
+  tmpdir: &tmpdir
+    root: <%= Dir.tmpdir %>
+    prms:
+      - r
+      - w
+  unzip_path:
+    <<: *tmpdir
+  permanent_test_files:
+    root: <%= NdrAvro.root + '/test/resources' %>
+    prms:
+      - r
+      - w

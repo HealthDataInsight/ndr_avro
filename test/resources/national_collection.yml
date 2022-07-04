@@ -1,0 +1,69 @@
+---
+- !ruby/object:NdrImport::Table
+  canonical_name: two_week_wait
+  filename_pattern: !ruby/regexp /.*/i
+  tablename_pattern: !ruby/regexp /Backsheet/i
+  header_lines: 1
+  footer_lines: 0
+  klass: Hash
+  columns:
+  - column: :filename
+    mappings:
+    - field: providercode
+      replace:
+      - ? !ruby/regexp /_Collection-.*-20.*\.xlsm\z/
+        : ''
+  - column: SQU03_5_3_1:N
+    mappings:
+    - field: SQU03_5_3_1
+      avro_data_type: :int
+  - column: SQU03_5_3_2:N
+    mappings:
+    - field: SQU03_5_3_2
+      avro_data_type: :int
+  - column: SQU03_6_2_1:N
+    mappings:
+    - field: SQU03_6_2_1
+      avro_data_type: :decimal
+      avro_data_type_options:
+        precision: 6
+        scale: 4
+  - column: SQU03_6_2_2:N
+    mappings:
+    - field: SQU03_6_2_2
+      avro_data_type: :array
+      avro_data_type_options:
+        items: :int
+        split: ','
+  - column: K1n:N
+    mappings:
+    - field: K1N
+      avro_data_type: :boolean
+  - column: K1m:D
+    mappings:
+    - field: K1M
+      avro_data_type: :date
+  - column: K150:N
+    mappings:
+    - field: K150
+  - column: K190:N
+    mappings:
+    - field: K190
+  - column: F1n:N
+    mappings:
+    - field: F1N
+  - column: F1t:N
+    mappings:
+    - field: F1T
+  - column: F1m:N
+    mappings:
+    - field: F1M
+  - column: F190:N
+    mappings:
+    - field: F190
+  - column: P1b:N
+    mappings:
+    - field: P1B
+  - column: P1n:N
+    mappings:
+    - field: P1N

@@ -1,0 +1,9 @@
+inherit_from: 'https://raw.githubusercontent.com/PublicHealthEngland/ndr_dev_support/master/.rubocop.yml'
+
+require: rubocop-minitest
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Minitest/MultipleAssertions:
+  Max: 10
