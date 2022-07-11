@@ -69,6 +69,13 @@ class TypeCastingTest < Minitest::Test
     assert_equal (Date.new(1959, 12, 31) - epoch).to_i,
                  NdrAvro::TypeCasting.cast_to_avro_datatype('1959-12-31', :date)
 
+    assert_equal (Date.new(2021, 4, 28) - epoch).to_i,
+                 NdrAvro::TypeCasting.cast_to_avro_datatype(Date.new(2021, 4, 28), :date)
+    assert_equal 0,
+                 NdrAvro::TypeCasting.cast_to_avro_datatype(Date.new(1970, 1, 1), :date)
+    assert_equal (Date.new(1959, 12, 31) - epoch).to_i,
+                 NdrAvro::TypeCasting.cast_to_avro_datatype(Date.new(1959, 12, 31), :date)
+
     assert_nil NdrAvro::TypeCasting.cast_to_avro_datatype(nil, :date)
   end
 

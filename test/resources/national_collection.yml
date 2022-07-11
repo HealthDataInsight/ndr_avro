@@ -42,6 +42,7 @@
   - column: K1m:D
     mappings:
     - field: K1M
+      format: "%Y-%m-%d"
       avro_data_type: :date
   - column: K150:N
     mappings:
