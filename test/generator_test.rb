@@ -126,7 +126,7 @@ class GeneratorTest < Minitest::Test
     end
   end
 
-  def tst_cross_worksheet_klass
+  def test_cross_worksheet_klass
     generate_avro('cross_worksheet_spreadsheet.xlsx', 'cross_worksheet_mapping.yml')
 
     read_avro('cross_worksheet_spreadsheet.hash.mapped.avro') do |datum_reader, data_file_reader|
