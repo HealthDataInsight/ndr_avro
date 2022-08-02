@@ -174,6 +174,10 @@ class GeneratorTest < Minitest::Test
     generate_avro('fake_dids_10.csv', 'dids.yml')
   end
 
+  def test_pdfs
+    generate_avro('SampleNGSSomaticMutationAnalysisReports/SampleNGSSomaticMutationAnalysisReport_001.pdf', 'pdf_mapping.yml')
+  end
+
   private
 
     def read_avro(filename)

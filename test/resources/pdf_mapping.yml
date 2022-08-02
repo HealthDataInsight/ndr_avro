@@ -1,0 +1,64 @@
+---
+- !ruby/object:NdrImport::NonTabular::Table
+  canonical_name: test_mapping
+  filename_pattern: !ruby/regexp /\.pdf\z/i
+  klass: Hash
+  start_line_pattern: !ruby/regexp /\ALab No:.*?Date received:.*?Primary Tumour Site:/
+  start_in_a_record: false
+  end_in_a_record: true
+  capture_start_line: true
+  remove_lines:
+    footer:
+    - !ruby/regexp /; MGP-1 NGS Somatic Mutation Analysis Report Page \d+ of \d+\z/
+  columns:
+  - column: servicereportidentifier
+    non_tabular_cell:
+      lines: 0
+      capture: !ruby/regexp /\ALab No:\s(.*?)\sDate received/
+    mappings:
+    - field: servicereportidentifier
+    - field: providercode
+      replace:
+      - ? !ruby/regexp /\A.*\z/
+        : 'RRV00'
+  - column: receiveddate
+    non_tabular_cell:
+      lines: 0
+      capture: !ruby/regexp /Date received:\s(.*?)\sPrimary/
+    mappings:
+    - field: receiveddate
+      format: '%d/%m/%Y'
+  - standard_mapping: surname
+    non_tabular_cell:
+      lines: 1
+      capture: !ruby/regexp /\ASurname:\s(.*?)\sSurgical/
+  - standard_mapping: forenames
+    non_tabular_cell:
+      lines: 2
+      capture: !ruby/regexp /\AForename:\s(.*?)\sSample Type/
+  - column: dateofbirth
+    non_tabular_cell:
+      lines: 3
+      capture: !ruby/regexp /\ADOB\s\(D\/M\/Y\):\s(.*?)\sTissue Type/
+    mappings:
+    - field: dateofbirth
+      format: '%d/%m/%Y'
+  - standard_mapping: sex
+    non_tabular_cell:
+      lines: 4
+      capture: !ruby/regexp /\AGender:\s(.*?)\sTumour Type/
+  - column: fulltextreport
+    non_tabular_cell:
+      lines: !ruby/object:RegexpRange
+        begin: !ruby/regexp /\AALL OTHER DETECTED VARIANTS:\z/
+  #      end: -70
+        end: !ruby/regexp /\AHow do we look for mutations\?\z/
+  #      end: !ruby/regexp /\ANOT DETECTED VARIANTS \(Frequency\<1%\)\z/
+        excl: true
+      capture: !ruby/regexp /\A(.*)\z/
+      join: "\n"
+    mappings:
+    - field: fulltextreport
+      replace:
+      - ? !ruby/regexp /(COMMENTS|ALL OTHER DETECTED VARIANTS\:|NOT DETECTED VARIANTS|TARGET REGIONS WITH INSUFFICIENT COVERAGE|UNASSIGNABLE VARIANTS\-\d+)/
+        : "\n\\1"
