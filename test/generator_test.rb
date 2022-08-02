@@ -175,7 +175,7 @@ class GeneratorTest < Minitest::Test
   end
 
   def test_pdfs
-    generate_avro('SampleNGSSomaticMutationAnalysisReports/SampleNGSSomaticMutationAnalysisReport_001.pdf', 'pdf_mapping.yml')
+    generate_avro('SampleNGSSomaticMutationAnalysisReports.zip', 'pdf_mapping.yml')
   end
 
   private
