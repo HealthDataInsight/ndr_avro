@@ -171,11 +171,13 @@ class GeneratorTest < Minitest::Test
   end
 
   def test_dids
-    generate_avro('fake_dids_10.csv', 'dids.yml')
+    output_files = generate_avro('fake_dids_10.csv', 'dids.yml')
+    refute output_files.empty?
   end
 
   def test_pdfs
-    generate_avro('SampleNGSSomaticMutationAnalysisReports.zip', 'pdf_mapping.yml')
+    output_files = generate_avro('SampleNGSSomaticMutationAnalysisReports.zip', 'pdf_mapping.yml')
+    refute output_files.empty?
   end
 
   private
