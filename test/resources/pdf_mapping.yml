@@ -3,8 +3,8 @@
   canonical_name: test_mapping
   filename_pattern: !ruby/regexp /\.pdf\z/i
   klass: Hash
-  start_line_pattern: !ruby/regexp /\ALab No:.*?Date received:.*?Primary Tumour Site:/
-  start_in_a_record: false
+  # start_line_pattern: !ruby/regexp /\ALab No:.*?Date received:.*?Primary Tumour Site:/
+  start_in_a_record: true
   end_in_a_record: true
   capture_start_line: true
   remove_lines:
