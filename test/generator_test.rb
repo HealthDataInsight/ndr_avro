@@ -170,6 +170,10 @@ class GeneratorTest < Minitest::Test
     end
   end
 
+  def test_dids
+    generate_avro('fake_dids_10.csv', 'dids.yml')
+  end
+
   private
 
     def read_avro(filename)

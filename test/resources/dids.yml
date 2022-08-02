@@ -1,0 +1,117 @@
+---
+- !ruby/object:NdrImport::Table
+  canonical_name: sheet_one
+  filename_pattern: !ruby/regexp /.*\.csv\z/i
+  header_lines: 0
+  footer_lines: 0
+  klass: Hash
+  columns:
+  - column: NHS NUMBER
+    # 1 M* n10
+    mappings:
+    - field: NHSNUMBER
+      avro_data_type: :string
+
+  - column: NHS NUMBER STATUS INDICATOR CODE
+    # 2 R an2
+    mappings:
+    - field: NHSNUMBERSTATUSINDICATORCODE
+      avro_data_type: :string
+
+  - column: PERSON BIRTH DATE
+    # 3 M* an10 CCYY-MM-DD
+    mappings:
+    - field: PERSONBIRTHDATE
+      avro_data_type: :date
+      format: "%Y-%m-%d"
+
+  - column: ETHNIC CATEGORY
+    # 4 M* max an2
+    mappings:
+    - field: ETHNICCATEGORY
+      avro_data_type: :string
+
+  - column: PERSON GENDER CODE CURRENT
+    # 5 M* an1
+    mappings:
+    - field: PERSONGENDERCODECURRENT
+      avro_data_type: :string
+
+  - column: POSTCODE OF USUAL ADDRESS
+    # 6 M* max an8
+    mappings:
+    - field: POSTCODEOFUSUALADDRESS
+      avro_data_type: :string
+
+  - column: GENERAL MEDICAL PRACTICE CODE (PATIENT REGISTRATION)
+    # 7 M* an6
+
+  - column: PATIENT SOURCE SETTING TYPE (DIAGNOSTIC IMAGING)
+    # 8 M an2
+    mappings:
+    - field: PATIENTSOURCESETTINGTYPE_DIAGNOSTICIMAGING
+      avro_data_type: :string
+
+  - column: REFERRER CODE
+    # 9 R an8
+    mappings:
+    - field: REFERRERCODE
+      avro_data_type: :string
+
+  - column: REFERRING ORGANISATION CODE
+    # 10 R max an6
+    mappings:
+    - field: REFERRINGORGANISATIONCODE
+      avro_data_type: :string
+
+  - column: DIAGNOSTIC TEST REQUEST DATE
+    # 11 R an10 CCYY-MM-DD
+    mappings:
+    - field: DIAGNOSTICTESTREQUESTDATE
+      avro_data_type: :date
+      format: "%Y-%m-%d"
+
+  - column: DIAGNOSTIC TEST REQUEST RECEIVED DATE
+    # 12 R an10 CCYY-MM-DD
+    mappings:
+    - field: DIAGNOSTICTESTREQUESTRECEIVEDDATE
+      avro_data_type: :date
+      format: "%Y-%m-%d"
+
+  - column: DIAGNOSTIC TEST DATE
+    # 13 M an10 CCYY-MM-DD
+    mappings:
+    - field: DIAGNOSTICTESTDATE
+      avro_data_type: :date
+      format: "%Y-%m-%d"
+
+  - column: IMAGING CODE (NICIP)
+    # 14 M max an6
+    mappings:
+    - field: IMAGINGCODE_NICIP
+      avro_data_type: :string
+
+  - column: IMAGING CODE (SNOMED CT)
+    # 15 M min an6, max n18
+    mappings:
+    - field: IMAGINGCODE_SNOMEDCT
+      avro_data_type: :string
+
+  - column: SERVICE REPORT ISSUE DATE
+    # 16 R an10 CCYY-MM-DD
+    mappings:
+    - field: SERVICEREPORTISSUEDATE
+      avro_data_type: :date
+      format: "%Y-%m-%d"
+
+  - column: SITE CODE (OF IMAGING)
+    # 17 M min an5 max an9
+    mappings:
+    - field: SITECODE_OFIMAGING
+      avro_data_type: :string
+
+  - column: RADIOLOGICAL ACCESSION NUMBER
+    # 18 M max an20
+    mappings:
+    - field: RADIOLOGICALACCESSIONNUMBER
+      avro_data_type: :string
