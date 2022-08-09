@@ -17,7 +17,8 @@ jobs:
         ruby-version:
           - '2.7'
           - '3.0'
-        gemfile: Gemfile
+        gemfile:
+          - Gemfile
 
     name: Ruby ${{ matrix.ruby-version }} / Bundle ${{ matrix.gemfile }}
 
