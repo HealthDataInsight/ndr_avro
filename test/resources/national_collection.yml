@@ -1,7 +1,6 @@
----
 - !ruby/object:NdrImport::Table
   canonical_name: two_week_wait
-  filename_pattern: !ruby/regexp /.*/i
+  filename_pattern: !ruby/regexp /_Collection-.*-20.*\.xlsm\z/i
   tablename_pattern: !ruby/regexp /Backsheet/i
   header_lines: 1
   footer_lines: 0

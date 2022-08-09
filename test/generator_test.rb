@@ -126,7 +126,7 @@ class GeneratorTest < Minitest::Test
     end
   end
 
-  def tst_cross_worksheet_klass
+  def test_cross_worksheet_klass
     generate_avro('cross_worksheet_spreadsheet.xlsx', 'cross_worksheet_mapping.yml')
 
     read_avro('cross_worksheet_spreadsheet.hash.mapped.avro') do |datum_reader, data_file_reader|
@@ -168,6 +168,11 @@ class GeneratorTest < Minitest::Test
       assert_equal [nil, nil, nil, nil, 'Sheet2_2C_Third', 'Sheet2_3C_Third', 'Sheet2_4C_Third'],
                    (rows.map { |row| row['sheet2_third'] })
     end
+  end
+
+  def test_dids
+    output_files = generate_avro('fake_dids_10.csv', 'dids.yml')
+    refute output_files.empty?
   end
 
   private
