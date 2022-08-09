@@ -4,10 +4,13 @@ on:
   # Run on all master branch commits
   push:
     branches:
-      - master
+      - main
 
   # Run against all PRs (from the main repo, or forks)
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -17,22 +20,15 @@ jobs:
         ruby-version:
           - '2.7'
           - '3.0'
-        gemfile: Gemfile
-
-    name: Ruby ${{ matrix.ruby-version }} / Bundle ${{ matrix.gemfile }}
 
     runs-on: ubuntu-latest
 
-    env:
-      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-    - name: Install dependencies
-      run: bundle install
+        bundler-cache: true
     - name: Run tests
       run: bundle exec rake
