@@ -1,0 +1,38 @@
+name: Test
+
+on:
+  # Run on all master branch commits
+  push:
+    branches:
+      - master
+
+  # Run against all PRs (from the main repo, or forks)
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '2.7'
+          - '3.0'
+        gemfile: Gemfile
+
+    name: Ruby ${{ matrix.ruby-version }} / Bundle ${{ matrix.gemfile }}
+
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests
+      run: bundle exec rake
