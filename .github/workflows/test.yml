@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  # Run on all master branch commits
+  push:
+    branches:
+      - main
+
+  # Run against all PRs (from the main repo, or forks)
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '2.7'
+          - '3.0'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+    - name: Install dependencies
+      run: bundle install
+    - name: Run tests
+      run: bundle exec rake
