@@ -14,7 +14,7 @@ module NdrAvro
 
     def initialize(filename, table_mappings, output_path = '')
       @filename = filename
-      @table_mappings = YAML.load_file table_mappings
+      load_mappings(table_mappings)
       @output_path = Pathname.new(output_path)
       @rawtext_column_names = {}
       @avro_column_types = {}
@@ -46,6 +46,23 @@ module NdrAvro
     end
 
     private
+
+      def load_mappings(table_mappings)
+        return unless File.exist?(table_mappings)
+
+        File.open(table_mappings, 'r:bom|utf-8') do |f|
+          permitted_classes = [
+            NdrImport::NonTabular::Table,
+            NdrImport::Table,
+            Range,
+            Regexp,
+            RegexpRange,
+            Symbol
+          ]
+          @table_mappings = YAML.safe_load(f, filename: table_mappings,
+                                              permitted_classes: permitted_classes)
+        end
+      end
 
       def ensure_all_mappings_are_tables
         return if @table_mappings.all? { |table| table.is_a?(NdrImport::Table) }
