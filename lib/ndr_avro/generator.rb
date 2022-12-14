@@ -30,8 +30,10 @@ module NdrAvro
         capture_all_rawtext_names(table)
         capture_all_avro_column_types(table)
 
-        table.transform(rows).each do |instance, fields, _index|
+        table.transform(rows).each do |instance, fields, index|
           klass = instance.split('#').first
+
+          yield(klass, instance, fields, index) if block_given?
 
           mapped_hashes[klass] ||= []
           mapped_hashes[klass] << fields.except(:rawtext)

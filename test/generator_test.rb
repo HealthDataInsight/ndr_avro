@@ -175,6 +175,37 @@ class GeneratorTest < Minitest::Test
     refute_empty output_files
   end
 
+  def test_dids_unaltered_inline
+    generator = NdrAvro::Generator.new(@permanent_test_files.join('fake_dids_10.csv'),
+                                       @permanent_test_files.join('dids.yml'))
+    generator.process
+
+    read_avro('fake_dids_10.hash.mapped.avro') do |_datum_reader, data_file_reader|
+      rows = data_file_reader.to_a
+
+      assert_equal ['NSMARO', nil, 'KCMAR', nil, 'UARCH', 'ULLDR', nil, nil, 'NBSKNO', 'MKNELC'],
+                   (rows.map { |row| row['IMAGINGCODE_NICIP'] })
+    end
+  end
+
+  def test_dids_altered_inline
+    generator = NdrAvro::Generator.new(@permanent_test_files.join('fake_dids_10.csv'),
+                                       @permanent_test_files.join('dids.yml'))
+    generator.process do |_klass, _instance, fields, _index|
+      unless fields['IMAGINGCODE_NICIP'].nil?
+        fields['IMAGINGCODE_NICIP'] = fields['IMAGINGCODE_NICIP'].reverse
+      end
+    end
+
+    read_avro('fake_dids_10.hash.mapped.avro') do |_datum_reader, data_file_reader|
+      rows = data_file_reader.to_a
+
+      # NICIP codes characters have been reversed
+      assert_equal ['ORAMSN', nil, 'RAMCK', nil, 'HCRAU', 'RDLLU', nil, nil, 'ONKSBN', 'CLENKM'],
+                   (rows.map { |row| row['IMAGINGCODE_NICIP'] })
+    end
+  end
+
   private
 
     def read_avro(filename)
