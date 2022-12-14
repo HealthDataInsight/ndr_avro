@@ -172,7 +172,7 @@ class GeneratorTest < Minitest::Test
 
   def test_dids
     output_files = generate_avro('fake_dids_10.csv', 'dids.yml')
-    refute output_files.empty?
+    refute_empty output_files
   end
 
   private
