@@ -29,9 +29,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'ndr_import'
-  # spec.add_dependency 'rake' # rake is an uncaptured red-parquet dependency
-  # spec.add_dependency 'red-parquet', '~> 6.0.1'
   spec.add_dependency 'avro', '~> 1.11.0'
+  spec.add_dependency 'ndr_import'
+
+  spec.add_development_dependency 'minitest', '~> 5.0'
+  spec.add_development_dependency 'ndr_dev_support', '>= 3.1.3'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rubocop-minitest'
+  spec.add_development_dependency 'simplecov'
+
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
