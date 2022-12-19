@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.0.0-rc.3] - 2022-12-19
+
 ### Added
 
 - Switched to safe loading the YAML mapping, allowing only known ruby classes.
