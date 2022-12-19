@@ -9,17 +9,9 @@ class GeneratorTest < Minitest::Test
   end
 
   def teardown
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.mapped.avro', force: true
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.mapped.avsc', force: true
-
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.raw.avro', force: true
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.raw.avsc', force: true
-
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.mapped.avro', force: true
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.mapped.avsc', force: true
-
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.raw.avro', force: true
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.raw.avsc', force: true
+    delete_avro_file_set('ABC_Collection-June-2020_03.hash')
+    delete_avro_file_set('cross_worksheet_spreadsheet.hash')
+    delete_avro_file_set('fake_dids_10.hash')
   end
 
   def test_the_output_schemas
@@ -207,6 +199,13 @@ class GeneratorTest < Minitest::Test
   end
 
   private
+
+    def delete_avro_file_set(basename)
+      FileUtils.rm "#{basename}.mapped.avro", force: true
+      FileUtils.rm "#{basename}.mapped.avsc", force: true
+      FileUtils.rm "#{basename}.raw.avro", force: true
+      FileUtils.rm "#{basename}.raw.avsc", force: true
+    end
 
     def read_avro(filename)
       # Open items.avro file in read mode
