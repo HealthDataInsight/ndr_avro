@@ -213,7 +213,7 @@ class GeneratorTest < Minitest::Test
         total_rows: 10
       }
     ], generator.output_files
-end
+  end
 
   private
 
