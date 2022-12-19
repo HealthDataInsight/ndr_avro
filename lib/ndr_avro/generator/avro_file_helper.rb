@@ -13,15 +13,11 @@ module NdrAvro
       private
 
         def avro_filename(klass, mode)
-          basename = File.basename(@filename, File.extname(@filename))
-
-          @output_path.join("#{basename}.#{klass.underscore}.#{mode}.avro")
+          @output_path.join("#{@basename}.#{klass.underscore}.#{mode}.avro")
         end
 
         def avro_schema_filename(klass, mode)
-          basename = File.basename(@filename, File.extname(@filename))
-
-          @output_path.join("#{basename}.#{klass.underscore}.#{mode}.avsc")
+          @output_path.join("#{@basename}.#{klass.underscore}.#{mode}.avsc")
         end
 
         def avro_schema_type(type, options)

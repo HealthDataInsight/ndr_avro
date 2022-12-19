@@ -12,10 +12,11 @@ module NdrAvro
     include NdrImport::UniversalImporterHelper
     include NdrAvro::Generator::AvroFileHelper
 
-    def initialize(filename, table_mappings, output_path = '')
+    def initialize(filename, table_mappings, options = {})
       @filename = filename
       load_mappings(table_mappings)
-      @output_path = Pathname.new(output_path)
+      @output_path = Pathname.new(options[:output_path] || '')
+      @basename = options[:basename] || File.basename(filename, File.extname(filename))
       @rawtext_column_names = {}
       @avro_column_types = {}
 
