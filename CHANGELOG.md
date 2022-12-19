@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Switched to safe loading the YAML mapping, allowing only known ruby classes.
 - Added ability to yield in NdrAvro::Generator#process, enabling programmatic access to data as it is processed.
+- Added ability to specify an Avro file basename which is different to the processed file basename.
 
 ### Fixed
 

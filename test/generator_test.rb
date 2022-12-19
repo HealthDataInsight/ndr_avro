@@ -9,17 +9,10 @@ class GeneratorTest < Minitest::Test
   end
 
   def teardown
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.mapped.avro', force: true
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.mapped.avsc', force: true
-
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.raw.avro', force: true
-    FileUtils.rm 'ABC_Collection-June-2020_03.hash.raw.avsc', force: true
-
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.mapped.avro', force: true
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.mapped.avsc', force: true
-
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.raw.avro', force: true
-    FileUtils.rm 'cross_worksheet_spreadsheet.hash.raw.avsc', force: true
+    delete_avro_file_set('ABC_Collection-June-2020_03.hash')
+    delete_avro_file_set('cross_worksheet_spreadsheet.hash')
+    delete_avro_file_set('custom_basename.hash')
+    delete_avro_file_set('fake_dids_10.hash')
   end
 
   def test_the_output_schemas
@@ -88,7 +81,7 @@ class GeneratorTest < Minitest::Test
       table_mappings = @permanent_test_files.join('national_collection.yml')
       output_path = Pathname.new(dir)
 
-      generator = NdrAvro::Generator.new(source_file, table_mappings, output_path)
+      generator = NdrAvro::Generator.new(source_file, table_mappings, output_path: output_path)
       generator.process
 
       assert_equal [
@@ -171,8 +164,8 @@ class GeneratorTest < Minitest::Test
   end
 
   def test_dids
-    output_files = generate_avro('fake_dids_10.csv', 'dids.yml')
-    refute_empty output_files
+    generator = generate_avro('fake_dids_10.csv', 'dids.yml')
+    refute_empty generator.output_files
   end
 
   def test_dids_unaltered_inline
@@ -206,7 +199,30 @@ class GeneratorTest < Minitest::Test
     end
   end
 
+  def test_alternative_filename
+    generator = generate_avro('fake_dids_10.csv', 'dids.yml', basename: 'custom_basename')
+    assert_equal [
+      {
+        path: Pathname.new('custom_basename.hash.mapped.avro'),
+        schema: Pathname.new('custom_basename.hash.mapped.avsc'),
+        total_rows: 10
+      },
+      {
+        path: Pathname.new('custom_basename.hash.raw.avro'),
+        schema: Pathname.new('custom_basename.hash.raw.avsc'),
+        total_rows: 10
+      }
+    ], generator.output_files
+end
+
   private
+
+    def delete_avro_file_set(basename)
+      FileUtils.rm "#{basename}.mapped.avro", force: true
+      FileUtils.rm "#{basename}.mapped.avsc", force: true
+      FileUtils.rm "#{basename}.raw.avro", force: true
+      FileUtils.rm "#{basename}.raw.avsc", force: true
+    end
 
     def read_avro(filename)
       # Open items.avro file in read mode
@@ -225,9 +241,11 @@ class GeneratorTest < Minitest::Test
       file.close
     end
 
-    def generate_avro(source_file, table_mappings)
+    def generate_avro(source_file, table_mappings, options = {})
       generator = NdrAvro::Generator.new(@permanent_test_files.join(source_file),
-                                         @permanent_test_files.join(table_mappings))
+                                         @permanent_test_files.join(table_mappings),
+                                         options)
       generator.process
+      generator
     end
 end
