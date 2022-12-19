@@ -71,6 +71,11 @@ module NdrAvro
           }.to_json
         end
 
+        def save_avro_files(klass_mapped_hashes, klass_rawtext_hashes)
+          save_mapped_avro_files(klass_mapped_hashes)
+          save_raw_avro_files(klass_rawtext_hashes)
+        end
+
         def save_mapped_avro_files(klass_mapped_hashes)
           klass_mapped_hashes.each do |klass, mapped_hashes|
             # Save the mapped avro file
@@ -108,7 +113,6 @@ module NdrAvro
           output_filename = avro_filename(klass, mode)
           file = File.open(output_filename, 'wb')
 
-          # schema = Avro::Schema.parse(File.open("item.avsc", "rb").read)
           # Save schema
           schema_filename = avro_schema_filename(klass, mode)
           File.write(schema_filename, schema)
@@ -130,11 +134,15 @@ module NdrAvro
           dw.close
           file.close
 
+          log_avro_file(output_filename, schema_filename, rows.length)
+        end
+
+        def log_avro_file(path, schema, total_rows)
           @output_files ||= []
           @output_files << {
-            path: output_filename,
-            schema: schema_filename,
-            total_rows: rows.length
+            path: path,
+            schema: schema,
+            total_rows: total_rows
           }
         end
     end

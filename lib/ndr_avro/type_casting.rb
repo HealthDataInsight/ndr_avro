@@ -34,11 +34,15 @@ module NdrAvro
 
         ActiveModel::Type::Integer.new(limit: 4).cast((date - epoch).to_i)
       when :array
-        value.to_s.split(options.fetch(:split)).map do |v|
-          cast_to_avro_datatype(v, options[:items] || :string, options.except(:type))
-        end
+        cast_to_avro_array(value, options)
       else
         ActiveModel::Type.lookup(type).cast(value)
+      end
+    end
+
+    def self.cast_to_avro_array(value, options = {})
+      value.to_s.split(options.fetch(:split)).map do |v|
+        cast_to_avro_datatype(v, options[:items] || :string, options.except(:type))
       end
     end
   end

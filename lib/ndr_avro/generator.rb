@@ -44,8 +44,7 @@ module NdrAvro
         end
       end
 
-      save_mapped_avro_files(mapped_hashes)
-      save_raw_avro_files(rawtext_hashes)
+      save_avro_files(mapped_hashes, rawtext_hashes)
     end
 
     private
