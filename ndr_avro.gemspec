@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'avro', '~> 1.11.0'
+  spec.add_dependency 'avro', '~> 1.12'
   spec.add_dependency 'ndr_import'
 
   spec.add_development_dependency 'minitest', '~> 5.0'
