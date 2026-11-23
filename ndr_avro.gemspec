@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Generate avro files using the NDR ETL importer'
   spec.homepage      = 'https://github.com/timgentry/ndr_avro'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 3.2')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.3')
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
