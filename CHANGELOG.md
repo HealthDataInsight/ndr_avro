@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added National Disease Registration Service (NDRS) standard mappings
-- Added Diagnostic Imaging Data Set (DIDS) test and dummy data
+- Added Diagnostic Imaging Data Set (DIDS) test and synthetic data
 - Added GitHub action to run all the ruby tests
 
 ### Fixed

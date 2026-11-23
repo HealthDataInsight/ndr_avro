@@ -52,6 +52,7 @@ defines an integer `TOTAL_NUMBER` column in the `mapped` Avro files, with values
 
 Currently supported Avro column types are:
 
+<!--alex ignore savage-->
 Primitive Types:
 * :boolean
 * :int
