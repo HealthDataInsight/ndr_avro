@@ -6,7 +6,7 @@
 [![Inclusive Language](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml/badge.svg)](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml)
 <!-- Way of Working: Badge Holder End -->
 
-Based on [Ollie Tulloch](https://github.com/ollietulloch)'s boilerplate MongoDB example, this generates [Apache Avro](https://avro.apache.org) file(s) using [NdrImport](https://github.com/NHSDigital/ndr_import).
+Based on [Ollie Tulloch](https://github.com/ollietulloch)'s boilerplate MongoDB example, this generates [Apache Avro](https://avro.apache.org) file(s) using [NdrImport](https://rubygems.org/gems/ndr_import).
 
 ## Installation
 
