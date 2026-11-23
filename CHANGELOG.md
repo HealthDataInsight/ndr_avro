@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Use mise for Ruby (3.4) locally and in CI; drop `.ruby-version` and Ruby 3.1 support
+
 ## [v1.0.0-rc.3] - 2022-12-19
 
 ### Added
