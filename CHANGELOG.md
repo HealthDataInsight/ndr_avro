@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Use released `ndr_import` ~> 11.8 (activesupport 8.1, rubyzip 3) instead of the 2022 `feature/filename_column` fork; fixes `bundle audit` advisories
+- Bump minitest to ~> 6.0; drop the obsolete `pdf-reader != 2.10.0` pin
 - Use mise for Ruby (3.4) locally and in CI; drop `.ruby-version`; CI tests active Rubies 3.3, 3.4 and 4.0; drop Ruby < 3.3 support
 
 ## [v1.0.0-rc.3] - 2022-12-19
