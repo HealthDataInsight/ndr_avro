@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Generate avro files using the NDR ETL importer'
   spec.homepage      = 'https://github.com/timgentry/ndr_avro'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.7')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.3')
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -30,13 +30,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'avro', '~> 1.12'
-  spec.add_dependency 'ndr_import'
+  spec.add_dependency 'ndr_import', '~> 11.8'
 
-  spec.add_development_dependency 'minitest', '~> 5.0'
+  spec.add_development_dependency 'minitest', '~> 6.0'
   spec.add_development_dependency 'ndr_dev_support', '>= 3.1.3'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rubocop-minitest'
   spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'way_of_working', '~> 2.1'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
