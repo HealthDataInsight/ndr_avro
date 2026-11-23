@@ -1,5 +1,11 @@
 # NdrAvro [![Build Status](https://github.com/timgentry/ndr_avro/workflows/Test/badge.svg)](https://github.com/timgentry/ndr_avro/actions?query=workflow%3Atest)
 
+<!-- Way of Working: Main Badge Holder Start -->
+![HDI Way of Working Badge](https://img.shields.io/badge/HDI_Way_of_Working-v1.1.0-%238169e3?labelColor=black)
+<!-- Way of Working: Additional Badge Holder Start -->
+[![Inclusive Language](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml/badge.svg)](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml)
+<!-- Way of Working: Badge Holder End -->
+
 Based on [Ollie Tulloch](https://github.com/ollietulloch)'s boilerplate MongoDB example, this generates [Apache Avro](https://avro.apache.org) file(s) using [NdrImport](https://github.com/PublicHealthEngland/ndr_import).
 
 ## Installation

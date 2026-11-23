@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler/gem_tasks'
+require 'way_of_working/tasks'
 require 'rake/testtask'
 require 'ndr_dev_support/tasks'
 
