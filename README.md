@@ -6,7 +6,7 @@
 [![Inclusive Language](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml/badge.svg)](https://github.com/HealthDataInsight/ndr_avro/actions/workflows/inclusive-language.yml)
 <!-- Way of Working: Badge Holder End -->
 
-Based on [Ollie Tulloch](https://github.com/ollietulloch)'s boilerplate MongoDB example, this generates [Apache Avro](https://avro.apache.org) file(s) using [NdrImport](https://github.com/PublicHealthEngland/ndr_import).
+Based on [Ollie Tulloch](https://github.com/ollietulloch)'s boilerplate MongoDB example, this generates [Apache Avro](https://avro.apache.org) file(s) using [NdrImport](https://github.com/NHSDigital/ndr_import).
 
 ## Installation
 
@@ -35,7 +35,7 @@ generator.process
 
 See `test/ndr_avro_test.rb` for a more complete working example.
 
-More information on the workings of the mapper are available in the [wiki](https://github.com/PublicHealthEngland/ndr_import/wiki).
+More information on the workings of the mapper are available in the [wiki](https://github.com/NHSDigital/ndr_import/wiki).
 
 ## Type definitions
 

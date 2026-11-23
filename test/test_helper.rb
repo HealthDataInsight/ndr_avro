@@ -15,4 +15,4 @@ SafePath.configure! "#{File.dirname(__FILE__)}/resources/filesystem_paths.yml"
 
 # Configure NdrImport::StandardMappings
 mappings_path = SafePath.new('permanent_test_files').join('standard_mappings.yml')
-NdrImport::StandardMappings.mappings = YAML.load_file(mappings_path)
+NdrImport::StandardMappings.mappings = YAML.safe_load_file(mappings_path, permitted_classes: [Symbol])
